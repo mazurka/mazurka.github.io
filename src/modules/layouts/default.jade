@@ -1,0 +1,31 @@
+doctype html
+html
+  - locals.title = 'Mazurka'
+  - locals.description = 'Hypermedia toolkit'
+  - locals.url = locals.url
+  block locals
+
+  head
+    block head
+    title= locals.title
+    meta(name='description' content=locals.description)
+    meta(name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0')
+
+    //- Open graph meta
+    meta(property='og:title' content=locals.title)
+    meta(property='og:site_name' content='mazurka.io')
+    meta(property='og:url' content=locals.url)
+    meta(property='og:description' content=locals.description)
+    meta(property='og:type' content='article')
+    meta(property='og:locale' content='en_US')
+
+    link(rel='stylesheet' href=(process.env.CDN_URL || '/') + 'main.min.css')
+
+  body
+    header
+
+    block main
+
+    footer
+
+    script(src=(process.env.CDN_URL || '/') + 'main.min.js')
