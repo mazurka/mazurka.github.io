@@ -36,7 +36,7 @@
     "hyperagent": "^0.2.9",
     "indent-string": "^2.0.0",
     "jade": "^1.11.0",
-    "jade-html-loader": "0.0.2",
+    "jade-html-loader": "camshaft/jade-html-loader",
     "jade2ast": "~0.1.26",
     "jade2ast-loader": "^0.1.2",
     "json-loader": "^0.5.1",
