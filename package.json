@@ -34,6 +34,7 @@
     "glob": "^5.0.13",
     "html-loader": "camshaft/html-loader",
     "hyperagent": "^0.2.9",
+    "indent-string": "^2.0.0",
     "jade": "^1.11.0",
     "jade-html-loader": "0.0.2",
     "jade2ast": "~0.1.26",
@@ -55,7 +56,8 @@
     "style-loader": "^0.8.2",
     "ui-kit": "^0.6.0",
     "url-loader": "^0.5.5",
-    "webpack": "^1.9.4"
+    "webpack": "^1.9.4",
+    "yaml-frontmatter-loader": "0.0.3"
   },
   "devDependencies": {
     "simple-http-proxy": "^0.5.11",

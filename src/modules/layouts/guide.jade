@@ -1,0 +1,24 @@
+extends ./default
+
+block main
+  - var sections = [];
+  - sections.push(['Introduction', ['Overview', 'Installation', 'Resources']]);
+  - sections.push(['Protocols', ['Introduction']])
+  - sections.push(['Resources', ['Introduction']])
+  - sections.push(['Dispatch', ['Introduction']])
+  - sections.push(['Services', ['Introduction']])
+  - sections.push(['Tests', ['Introduction']])
+  - function toSlug(str) { return str.toLowerCase().replace(' ', '-'); }
+  - function guideLink(section, subsection) { return '/docs/' + toSlug(section) + '/' + toSlug(subsection);}
+
+  .Guide-sidenav
+    ul
+      each section in sections
+        li
+          div: a(href=guideLink(section[0], section[1][0]))= section[0]
+          ul
+            each subsection in section[1]
+              li: a(href=guideLink(section[0], subsection))= subsection
+
+  .Guide-content
+    block content
