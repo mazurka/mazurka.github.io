@@ -10,10 +10,14 @@ locals:
 ## Elixir
 
 * [Homepage](http://elixir-lang.org/)
-* [Repository](https://github.com/elixir-lang/elixir)
 * [Documentation](http://elixir-lang.org/docs/stable/elixir/)
+* [Repository](https://github.com/elixir-lang/elixir)
 
-[Elixir](http://elixir-lang.org/) and [Erlang](http://www.erlang.org/)
+## Erlang
+
+* [Homepage](http://www.erlang.org/)
+* [Documentation](http://www.erlang.org/doc/)
+* [Repository](https://github.com/erlang/otp)
 
 ## Etude
 
