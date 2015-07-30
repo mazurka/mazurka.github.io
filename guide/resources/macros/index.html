@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><title>Mazurka | Resources - Macros</title><meta name=description content="Hypermedia toolkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta property=og:title content="Resources - Macros"><meta property=og:site_name content=mazurka.io><meta property=og:url content=/guide/resources/macros><meta property=og:description content="Hypermedia toolkit"><meta property=og:type content=article><meta property=og:locale content=en_US><link rel=stylesheet href=/main.min.css><link rel=icon type=image/png href=/favicon.png><body><div class=Toolbar><div class=Toolbar-contents><a href="/" class=Toolbar-logo><div class=Toolbar-logo-image></div><div class=Toolbar-logo-text>Mazurka</div></a><div class=Toolbar-links><a href=/guide/introduction/overview class=Toolbar-link>Guide</a><a href="http://hexdocs.pm/mazurka/" class=Toolbar-link>Documentation</a><a href=https://github.com/mazurka/mazurka class=Toolbar-link>Repository</a><a href=https://github.com/mazurka/mazurka/blob/master/CHANGELOG.md class=Toolbar-link>Changelog</a></div></div></div><div class=Guide><div class=Guide-sidenav><ul class=Guide-sidenav-links><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/introduction/overview/" class=Guide-sidenav-link-anchor>Introduction</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/introduction/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/introduction/design/" class=Guide-sidenav-sublink-anchor>Design</a></li><li class=Guide-sidenav-sublink><a href="/guide/introduction/installation/" class=Guide-sidenav-sublink-anchor>Installation</a></li><li class=Guide-sidenav-sublink><a href="/guide/introduction/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/protocols/overview/" class=Guide-sidenav-link-anchor>Protocols</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/protocols/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/protocols/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/resources/overview/" class="Guide-sidenav-link-anchor is-active">Resources</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/resources/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/resources/macros/" class="Guide-sidenav-sublink-anchor is-active">Macros</a></li><li class=Guide-sidenav-sublink><a href="/guide/resources/mediatypes/" class=Guide-sidenav-sublink-anchor>Mediatypes</a></li><li class=Guide-sidenav-sublink><a href="/guide/resources/testing/" class=Guide-sidenav-sublink-anchor>Testing</a></li><li class=Guide-sidenav-sublink><a href="/guide/resources/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/dispatch/overview/" class=Guide-sidenav-link-anchor>Dispatch</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/dispatch/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/dispatch/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/services/overview/" class=Guide-sidenav-link-anchor>Services</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/services/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/services/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li></ul></div><div class=Guide-content><a target=__blank href=https://github.com/mazurka/mazurka.github.io/edit/source/src/modules/pages/guide/resources/macros/index.md class=Guide-content-edit>Edit this page</a><h1>Macros<a id=macros class=Header-anchor href=#macros aria-hidden=true><span class=Header-anchor-icon></span></a></h1><p>When declaring a Mazurka resource several macros are imported for resource construction and definition.</p><pre><code class="hljs elixir"><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+<span class=hljs-keyword>end</span>
+</code></pre><h2>Resource level<a id=resource-level class=Header-anchor href=#resource-level aria-hidden=true><span class=Header-anchor-icon></span></a></h2><h3>param<a id=param class=Header-anchor href=#param aria-hidden=true><span class=Header-anchor-icon></span></a></h3><pre><code class="hljs elixir"><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+
+  param user_id
+<span class=hljs-keyword>end</span>
+</code></pre><h3>let<a id=let class=Header-anchor href=#let aria-hidden=true><span class=Header-anchor-icon></span></a></h3><pre><code class="hljs elixir"><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+
+  param user_id
+
+  let user_id = <span class=hljs-constant>Params.</span>get(<span class=hljs-string>"user"</span>)
+  let user = <span class=hljs-constant>Users.</span>read(user_id)
+<span class=hljs-keyword>end</span>
+</code></pre><h3>condition<a id=condition class=Header-anchor href=#condition aria-hidden=true><span class=Header-anchor-icon></span></a></h3><pre><code class="hljs elixir"><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+
+  param user_id
+
+  let user_id = <span class=hljs-constant>Params.</span>get(<span class=hljs-string>"user"</span>)
+  let user = <span class=hljs-constant>Users.</span>read(user_id)
+
+  condition <span class=hljs-constant>Auth.</span>user_id == user_id, permission_error
+<span class=hljs-keyword>end</span>
+</code></pre><h3>mediatype<a id=mediatype class=Header-anchor href=#mediatype aria-hidden=true><span class=Header-anchor-icon></span></a></h3><pre><code class="hljs elixir"><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+
+  let user_id = <span class=hljs-constant>Params.</span>get(<span class=hljs-string>"user"</span>)
+  let user = <span class=hljs-constant>Users.</span>read(user_id)
+
+  condition <span class=hljs-constant>Auth.</span>user_id == user_id, permission_error
+
+  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+    <span class=hljs-comment># add mediatype actions here</span>
+  <span class=hljs-keyword>end</span>
+<span class=hljs-keyword>end</span>
+</code></pre><h3>event<a id=event class=Header-anchor href=#event aria-hidden=true><span class=Header-anchor-icon></span></a></h3><pre><code class="hljs elixir"><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+
+  let user_id = <span class=hljs-constant>Params.</span>get(<span class=hljs-string>"user"</span>)
+  let user = <span class=hljs-constant>Users.</span>read(user_id)
+
+  condition <span class=hljs-constant>Auth.</span>user_id == user_id, permission_error
+
+  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+    <span class=hljs-comment># add mediatype actions here</span>
+  <span class=hljs-keyword>end</span>
+
+  event <span class=hljs-keyword>do</span>
+    ^<span class=hljs-constant>IO.</span>puts(<span class=hljs-string>"User get <span class=hljs-subst>#{user_id}</span>"</span>)
+  <span class=hljs-keyword>end</span>
+<span class=hljs-keyword>end</span>
+</code></pre><h3>test<a id=test class=Header-anchor href=#test aria-hidden=true><span class=Header-anchor-icon></span></a></h3><pre><code class="hljs elixir"><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+
+  let user_id = <span class=hljs-constant>Params.</span>get(<span class=hljs-string>"user"</span>)
+  let user = <span class=hljs-constant>Users.</span>read(user_id)
+
+  condition <span class=hljs-constant>Auth.</span>user_id == user_id, permission_error
+
+  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+    <span class=hljs-comment># add mediatype actions here</span>
+  <span class=hljs-keyword>end</span>
+
+  event <span class=hljs-keyword>do</span>
+    ^<span class=hljs-constant>IO.</span>puts(<span class=hljs-string>"User get <span class=hljs-subst>#{user_id}</span>"</span>)
+  <span class=hljs-keyword>end</span>
+
+  test <span class=hljs-string>"should respond with a user"</span> <span class=hljs-keyword>do</span>
+    conn = request <span class=hljs-keyword>do</span>
+      bearer <span class=hljs-number>123</span>
+    <span class=hljs-keyword>end</span>
+
+    assert conn.status == <span class=hljs-number>200</span>
+  <span class=hljs-keyword>end</span>
+<span class=hljs-keyword>end</span>
+</code></pre><h2>Mediatype level<a id=mediatype-level class=Header-anchor href=#mediatype-level aria-hidden=true><span class=Header-anchor-icon></span></a></h2><h3>action<a id=action class=Header-anchor href=#action aria-hidden=true><span class=Header-anchor-icon></span></a></h3><h3>affordance<a id=affordance class=Header-anchor href=#affordance aria-hidden=true><span class=Header-anchor-icon></span></a></h3><h3>error<a id=error class=Header-anchor href=#error aria-hidden=true><span class=Header-anchor-icon></span></a></h3><h3>link_to<a id=link_to class=Header-anchor href=#link_to aria-hidden=true><span class=Header-anchor-icon></span></a></h3><h3>transition_to<a id=transition_to class=Header-anchor href=#transition_to aria-hidden=true><span class=Header-anchor-icon></span></a></h3></div></div><footer></footer><script src=/main.min.js></script>
