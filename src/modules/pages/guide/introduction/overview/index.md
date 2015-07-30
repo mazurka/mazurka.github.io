@@ -2,12 +2,10 @@
 extends: ../../../../layouts/guide/index.jade
 block: content
 locals:
-  title: Mazurka Guide
+  title: Introduction - Overview
 ---
 
-# I am the intro to the overview
-
----
+# Overview
 
 ```elixir
 defmodule Foo do

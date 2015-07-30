@@ -2,5 +2,5 @@
 extends: ../../../../layouts/guide/index.jade
 block: content
 locals:
-  title: Mazurka Guide
+  title: Dispatch - Overview
 ---
