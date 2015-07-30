@@ -4,7 +4,7 @@
 
 var stack = require('poe-ui/server');
 var glob = require('glob').sync;
-var path = require('path');
+var Path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
@@ -51,7 +51,8 @@ function page(source, loaders) {
 
   var opts = {
     url: SITE_URL + path,
-    path: path
+    path: path,
+    filename: Path.relative(__dirname, source)
   };
 
   var loader = plugin.extract('html-loader?attrs=img:src *:style&root=' + __dirname + '/src!jade-html-loader?' + JSON.stringify(opts) + loaders);
@@ -63,7 +64,7 @@ function page(source, loaders) {
 builder.output.publicPath = process.env.CDN_URL || '/';
 
 function formatRelativeName(source) {
-  var relative = path.relative(pages, source).replace('.md', '').replace('.jade', '');
+  var relative = Path.relative(pages, source).replace('.md', '').replace('.jade', '');
   if (relative === 'index' || relative === 'index/index') return 'index.html';
   var filename = relative.split('/').slice(-1)[0];
   if (filename === 'index') return relative + '.html';
