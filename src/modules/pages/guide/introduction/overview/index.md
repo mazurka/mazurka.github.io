@@ -19,14 +19,7 @@ _**simplify and improve the development of hypermedia APIs**_
 
 This goal leads to a very simple and focused design.
 
-### TODO verbage
+__TODO verbage__:
 
 * Traditional server patterns, such as MVC, are avoided.
 * [Phoenix](http://www.phoenixframework.org/) does an excellent job for full-stack needs.
-
-## Components
-
-* [Protocols](/guide/protocols/overview)
-* [Resources](/guide/resources/overview)
-* [Dispatch](/guide/dispatch/overview)
-* [Services](/guide/services/overview)
