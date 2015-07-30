@@ -9,7 +9,6 @@ padding 1rem
 &-sublink,
 &-link
   list-style none
-  text-transform uppercase
   text-decoration none
 
   &-anchor
@@ -17,7 +16,12 @@ padding 1rem
       border-bottom none
 
 &-link
-  %ui-kit/skins/heading/h8.ess
+  margin-bottom 2rem
+  &-anchor
+    %ui-kit/skins/heading/h8.ess
+    color = __.color.black.lighter
+    text-transform uppercase
 
 &-sublink
-  %ui-kit/skins/heading/h8.ess
+  &-anchor
+    font-weight 500
