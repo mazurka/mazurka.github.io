@@ -4,4 +4,5 @@ require.context('./modules/pages', true, /\.ess$/);
 
 import 'ui-kit/skins/base/index.ess'
 import 'ui-kit/skins/base/normalize.ess'
+import 'highlight.js/styles/github.css'
 import './index.ess'
