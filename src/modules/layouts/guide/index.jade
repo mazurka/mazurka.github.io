@@ -4,11 +4,11 @@ block main
   - var sections = [];
   - sections.push(['Introduction', ['Overview', 'Design', 'Installation', 'References']]);
   - sections.push(['Protocols', ['Overview', 'References']])
-  - sections.push(['Resources', ['Overview', 'Testing', 'References']])
+  - sections.push(['Resources', ['Overview', 'Macros', 'Mediatypes', 'Testing', 'References']])
   - sections.push(['Dispatch', ['Overview', 'References']])
   - sections.push(['Services', ['Overview', 'References']])
   - function toSlug(str) { return str.toLowerCase().replace(' ', '-'); }
-  - function guideLink(section, subsection) { return '/guide/' + toSlug(section) + '/' + toSlug(subsection);}
+  - function guideLink(section, subsection) { return '/guide/' + toSlug(section) + '/' + toSlug(subsection) + '/';}
 
   .Guide
     .Guide-sidenav
@@ -22,7 +22,7 @@ block main
               each subsection in section[1]
                 li.Guide-sidenav-sublink
                   - var href = guideLink(section[0], subsection);
-                  a.Guide-sidenav-sublink-anchor(href=href class={'is-active': locals.path == href})= subsection
+                  a.Guide-sidenav-sublink-anchor(href=href class={'is-active': locals.path + '/' == href})= subsection
 
     .Guide-content
       a.Guide-content-edit(target='__blank' href='https://github.com/mazurka/mazurka.github.io/edit/source/' + locals.filename) Edit this page

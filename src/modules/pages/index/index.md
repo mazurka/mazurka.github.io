@@ -2,9 +2,5 @@
 extends: ../../layouts/default/index.jade
 locals:
   title: Mazurka
-  description: Foobar
+  description: Hypermedia api toolkit
 ---
-
-# Hello there
-
-This is a test
