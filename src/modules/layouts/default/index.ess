@@ -1,7 +1,11 @@
 .Toolbar
   background-color = __.color.primary
-  display block
   color white
+  display block
+  position fixed
+  top 0
+  width 100%
+  z-index 1
   &-contents
     box-sizing border-box
     display flex
