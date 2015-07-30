@@ -1,4 +1,4 @@
 border-left = '1px solid ' + __.color.silver
+box-sizing border-box
 flex 1
-max-width 900px
 padding 0 1rem

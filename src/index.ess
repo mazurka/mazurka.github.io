@@ -1,6 +1,6 @@
 body
   color = __.color.black.light
-  font-size = __.h7
+  font-size = __.h6
 
 hr
   border none

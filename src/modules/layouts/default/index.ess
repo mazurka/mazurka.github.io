@@ -1,0 +1,45 @@
+.Toolbar
+  background-color = __.color.primary
+  display block
+  color white
+  &-contents
+    box-sizing border-box
+    display flex
+    margin-left auto
+    margin-right auto
+    max-width 75rem
+
+  &-link,
+  &-logo
+    padding 1rem
+    &:after
+      border-bottom none
+
+  &-link
+    transition none
+    &:hover
+      background-color hsla(0, 0%, 100%, .1)
+      transition none
+
+  &-logo
+    border-right 1px solid hsla(0, 0%, 25%, .2)
+    color white
+    max-width 10rem
+    font-weight bold
+    flex 1
+    letter-spacing 2px
+    position relative
+    text-transform lowercase
+
+    &:after
+      background-color hsla(0, 0%, 100%, .1)
+      right 0
+      height 100%
+      content ''
+      left initial
+      position absolute
+      top 0
+      width 9999px
+
+    &:hover:after
+      background-color hsla(0, 0%, 100%, .2)

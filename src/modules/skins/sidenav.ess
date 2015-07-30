@@ -3,8 +3,8 @@ padding 1rem
 &-sublinks,
 &-links
   margin-left 0
-  padding-left 0
   min-width 10rem
+  padding-left 0
 
 &-sublink,
 &-link
