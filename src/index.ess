@@ -1,3 +1,7 @@
 body
   color = __.color.black.light
   font-size = __.h7
+
+hr
+  border none
+  border-bottom = '1px solid ' + __.color.silver

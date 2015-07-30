@@ -21,7 +21,11 @@ padding 1rem
     %ui-kit/skins/heading/h8.ess
     color = __.color.black.lighter
     text-transform uppercase
+    &.is-active
+      color = __.color.primary
 
 &-sublink
   &-anchor
     font-weight 500
+    &.is-active
+      color = __.color.primary

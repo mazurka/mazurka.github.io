@@ -1,4 +1,5 @@
 module.exports = require('ui-kit/utils/root')(function(res){
+  res.color.primary = res.color.green.dark;
   res.h1 = '36px';
   res.h2 = '24px';
   res.h3 = '21px';
