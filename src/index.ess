@@ -5,3 +5,22 @@ body
 hr
   border none
   border-bottom = '1px solid ' + __.color.silver
+
+.Header-anchor
+  &:after
+    content '#'
+    font-weight bold
+    font-size .75em
+    line-height .75em
+    margin-left .25em
+    opacity 0
+    transition all 100ms linear
+
+  h1:hover &:after,
+  h2:hover &:after,
+  h3:hover &:after,
+  h4:hover &:after,
+  h5:hover &:after,
+  h6:hover &:after
+    margin-left .5em
+    opacity 1
