@@ -1,6 +1,8 @@
 ---
-extends: ../../../../layouts/guide
+extends: ../../../../layouts/guide/index.jade
 block: content
 locals:
   title: Mazurka Guide
 ---
+
+# I am the intro to the overview

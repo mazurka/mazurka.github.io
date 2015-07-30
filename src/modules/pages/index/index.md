@@ -5,6 +5,6 @@ locals:
   description: Foobar
 ---
 
-# Hello
+# Hello there
 
 This is a test

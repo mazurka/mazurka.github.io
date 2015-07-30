@@ -1,0 +1,7 @@
+.Guide
+  display flex
+  flex-direction row
+  &-sidenav
+    %skins/sidenav.ess
+  &-content
+    %skins/content.ess

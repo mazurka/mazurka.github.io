@@ -1,4 +1,4 @@
-extends ./default
+extends ../default
 
 block main
   - var sections = [];
@@ -11,14 +11,15 @@ block main
   - function toSlug(str) { return str.toLowerCase().replace(' ', '-'); }
   - function guideLink(section, subsection) { return '/guide/' + toSlug(section) + '/' + toSlug(subsection);}
 
-  .Guide-sidenav
-    ul
-      each section in sections
-        li
-          div: a(href=guideLink(section[0], section[1][0]))= section[0]
-          ul
-            each subsection in section[1]
-              li: a(href=guideLink(section[0], subsection))= subsection
+  .Guide
+    .Guide-sidenav
+      ul
+        each section in sections
+          li
+            div: a(href=guideLink(section[0], section[1][0]))= section[0]
+            ul
+              each subsection in section[1]
+                li: a(href=guideLink(section[0], subsection))= subsection
 
-  .Guide-content
-    block content
+    .Guide-content
+      block content
