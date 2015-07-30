@@ -21,14 +21,12 @@ html
     link(rel='stylesheet' href=(process.env.CDN_URL || '/') + 'main.min.css')
 
   body
-    header
     .Toolbar: .Toolbar-contents
       a.Toolbar-logo(href='/') Mazurka
       .Toolbar-links
         a.Toolbar-link(href='/guide/introduction/overview') Guide
-        a.Toolbar-link(href='#') Docs
-        a.Toolbar-link(href='#') Code
-
+        a.Toolbar-link(href='http://hexdocs.pm/mazurka/') Documentation
+        a.Toolbar-link(href='https://github.com/mazurka/mazurka') Repository
 
     block main
 
