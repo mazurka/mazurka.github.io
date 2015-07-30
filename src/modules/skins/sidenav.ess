@@ -18,8 +18,8 @@ padding 1rem
 &-link
   margin-bottom 2rem
   &-anchor
-    %ui-kit/skins/heading/h6.ess
     color = __.color.black.lighter
+    font-size = __.h6
     text-transform uppercase
     &.is-active
       color = __.color.primary
