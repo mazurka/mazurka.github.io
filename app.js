@@ -47,7 +47,12 @@ function page(source, loaders) {
   var plugin = new ExtractTextPlugin(source, relative, {extract: true, remove: true});
   builder.plugins.push(plugin);
 
-  var opts = {url: (SITE_URL + '/' + relative.replace('index.html', '')).replace(/\/$/, '')};
+  var path = ('/' + relative.replace('index.html', '')).replace(/\/$/, '');
+
+  var opts = {
+    url: SITE_URL + path,
+    path: path
+  };
 
   var loader = plugin.extract('html-loader?attrs=img:src *:style&root=' + __dirname + '/src!jade-html-loader?' + JSON.stringify(opts) + loaders);
   builder.module.loaders.push({test: new RegExp(source), loader: loader, loaders: loader});

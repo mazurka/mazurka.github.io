@@ -54,7 +54,7 @@
     "serve": "^1.4.0",
     "startup": "^1.0.3",
     "style-loader": "^0.8.2",
-    "ui-kit": "^0.6.0",
+    "ui-kit": "^0.7.0",
     "url-loader": "^0.5.5",
     "webpack": "^1.9.4",
     "yaml-frontmatter-loader": "0.0.3"

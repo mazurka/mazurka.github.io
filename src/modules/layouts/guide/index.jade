@@ -17,11 +17,13 @@ block main
         each section in sections
           li.Guide-sidenav-link
             .Guide-sidenav-link-text
-              a.Guide-sidenav-link-anchor(href=guideLink(section[0], section[1][0]))= section[0]
+              a.Guide-sidenav-link-anchor(href=guideLink(section[0], section[1][0])
+                                          class={'is-active': locals.path.indexOf('/guide/' + toSlug(section[0])) === 0})= section[0]
             ul.Guide-sidenav-sublinks
               each subsection in section[1]
                 li.Guide-sidenav-sublink
-                  a.Guide-sidenav-sublink-anchor(href=guideLink(section[0], subsection))= subsection
+                  - var href = guideLink(section[0], subsection);
+                  a.Guide-sidenav-sublink-anchor(href=href class={'is-active': locals.path == href})= subsection
 
     .Guide-content
       block content
