@@ -13,13 +13,15 @@ block main
 
   .Guide
     .Guide-sidenav
-      ul
+      ul.Guide-sidenav-links
         each section in sections
-          li
-            div: a(href=guideLink(section[0], section[1][0]))= section[0]
-            ul
+          li.Guide-sidenav-link
+            .Guide-sidenav-link-text
+              a.Guide-sidenav-link-anchor(href=guideLink(section[0], section[1][0]))= section[0]
+            ul.Guide-sidenav-sublinks
               each subsection in section[1]
-                li: a(href=guideLink(section[0], subsection))= subsection
+                li.Guide-sidenav-sublink
+                  a.Guide-sidenav-sublink-anchor(href=guideLink(section[0], subsection))= subsection
 
     .Guide-content
       block content

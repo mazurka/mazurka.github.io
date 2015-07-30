@@ -1,6 +1,6 @@
 .Guide
-  display flex
-  flex-direction row
+  %skins/page.ess
+
   &-sidenav
     %skins/sidenav.ess
   &-content

@@ -1,1 +1,3 @@
-padding 1rem
+border-left = '1px solid ' + __.color.silver
+max-width 900px
+padding 0 1rem

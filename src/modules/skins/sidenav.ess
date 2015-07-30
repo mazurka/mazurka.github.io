@@ -1,1 +1,23 @@
 padding 1rem
+
+&-sublinks,
+&-links
+  margin-left 0
+  padding-left 0
+  min-width 10rem
+
+&-sublink,
+&-link
+  list-style none
+  text-transform uppercase
+  text-decoration none
+
+  &-anchor
+    &:after
+      border-bottom none
+
+&-link
+  %ui-kit/skins/heading/h8.ess
+
+&-sublink
+  %ui-kit/skins/heading/h8.ess
