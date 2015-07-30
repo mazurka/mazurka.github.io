@@ -1,13 +1,19 @@
-dev: .env
+dev: .env build/favicon.ico build/favicon.png
 	@foreman start
 
 deploy: build bin/deploy
 	@cp CNAME build
 	@GIT_DEPLOY_DIR=build GIT_DEPLOY_BRANCH=master ./bin/deploy
 
-build:
+build: build/favicon.ico build/favicon.png
 	@echo building assets
 	@foreman run make prod
+
+build/favicon.ico: src/images/favicon.ico
+	@cp $< $@
+
+build/favicon.png: src/images/favicon.png
+	@cp $< $@
 
 watch:
 	@./node_modules/.bin/webpack --bail --output-path build --watch
