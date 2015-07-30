@@ -3,13 +3,13 @@ extends ./default
 block main
   - var sections = [];
   - sections.push(['Introduction', ['Overview', 'Installation', 'Resources']]);
-  - sections.push(['Protocols', ['Introduction']])
-  - sections.push(['Resources', ['Introduction']])
-  - sections.push(['Dispatch', ['Introduction']])
-  - sections.push(['Services', ['Introduction']])
-  - sections.push(['Tests', ['Introduction']])
+  - sections.push(['Protocols', ['Overview']])
+  - sections.push(['Resources', ['Overview']])
+  - sections.push(['Dispatch', ['Overview']])
+  - sections.push(['Services', ['Overview']])
+  - sections.push(['Tests', ['Overview']])
   - function toSlug(str) { return str.toLowerCase().replace(' ', '-'); }
-  - function guideLink(section, subsection) { return '/docs/' + toSlug(section) + '/' + toSlug(subsection);}
+  - function guideLink(section, subsection) { return '/guide/' + toSlug(section) + '/' + toSlug(subsection);}
 
   .Guide-sidenav
     ul

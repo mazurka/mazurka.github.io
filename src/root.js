@@ -1,5 +1,1 @@
-/**
- * Module dependencies
- */
-
-import Color from 'ui-kit/utils/color.js';
+module.exports = require('ui-kit/utils/root')();
