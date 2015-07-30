@@ -17,6 +17,8 @@
 
   &-link
     transition none
+    &:first-child
+      padding-left 1.5rem
     &:hover
       background-color hsla(0, 0%, 100%, .1)
       transition none
