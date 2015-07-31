@@ -7,7 +7,7 @@ locals:
 
 # Macros
 
-When declaring a Mazurka resource several macros are imported for resource construction and definition.
+When declaring a Mazurka resource several macros are imported for resource construction and definition. We'll walk through examples of each one as we build the `MyAPI.Resource.Users.Read` resource.
 
 ```elixir[initial]
 defmodule MyAPI.Resource.Users.Read do
@@ -19,7 +19,11 @@ end
 
 ### param
 
-```elixir[param<-initial]
+The `param` macro declares what parameters should be passed into the resource. This information can be used to generate documentation and verify that protocols or other resources are passing the correct information.
+
+In our example resource we're declaring that `user` is required to respond to a request.
+
+```elixir[param_no_validate<-initial]
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
@@ -27,19 +31,56 @@ defmodule MyAPI.Resource.Users.Read do
 end
 ```
 
+If we want to validate or transform the param we can pass a `do` block. The value of the parameter will be available as the variable `value`. This makes it easy to check the value against a [service](/guide/services/overview).
+
+```elixir[param<-initial]
+defmodule MyAPI.Resource.Users.Read do
+  use Mazurka.Resource
+
+  param user do
+    Users.read(value)
+  end
+end
+```
+
+We can add as many of the `param` delcarations as we would like, however in this example, we'll just stick to one.
+
 ### let
+
+Now that we've set up our user [param](#param) we can start declaring variables with `let`.
+
+```elixir[init_let<-param]
+defmodule MyAPI.Resource.Users.Read do
+  use Mazurka.Resource
+
+  param user do
+    Users.read(value)
+  end
+
+  let friends = Users.find_friends(user.id)
+end
+```
+
+We can also declare a variable from the result of a `do` block expression
 
 ```elixir[let<-param]
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
-  param user
+  param user do
+    Users.read(value)
+  end
 
-  let user_id = Params.get("user")
-  let user = Users.read(user_id)
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
 end
-
 ```
+
+Keep in mind that the expressions in `let` are lazy, meaning they will only be computed if the variable name is actually used. This can be a little different than what most programmers are used to. The benefit is we're never requesting data we don't need. Check out the [resources design](/guide/resources/design) page for more information regarding laziness.
 
 ### condition
 
@@ -47,10 +88,16 @@ end
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
-  param user
+  param user do
+    Users.read(value)
+  end
 
-  let user_id = Params.get("user")
-  let user = Users.read(user_id)
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
 
   condition Auth.user_id == user_id, permission_error
 end
@@ -62,10 +109,16 @@ end
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
-  param user
+  param user do
+    Users.read(value)
+  end
 
-  let user_id = Params.get("user")
-  let user = Users.read(user_id)
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
 
   condition Auth.user_id == user_id, permission_error
 
@@ -81,10 +134,16 @@ end
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
-  param user
+  param user do
+    Users.read(value)
+  end
 
-  let user_id = Params.get("user")
-  let user = Users.read(user_id)
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
 
   condition Auth.user_id == user_id, permission_error
 
@@ -104,10 +163,16 @@ end
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
-  param user
+  param user do
+    Users.read(value)
+  end
 
-  let user_id = Params.get("user")
-  let user = Users.read(user_id)
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
 
   condition Auth.user_id == user_id, permission_error
 
@@ -137,10 +202,16 @@ end
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
-  param user
+  param user do
+    Users.read(value)
+  end
 
-  let user_id = Params.get("user")
-  let user = Users.read(user_id)
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
 
   condition Auth.user_id == user_id, permission_error
 
@@ -175,10 +246,16 @@ end
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
-  param user
+  param user do
+    Users.read(value)
+  end
 
-  let user_id = Params.get("user")
-  let user = Users.read(user_id)
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
 
   condition Auth.user_id == user_id, permission_error
 
@@ -219,10 +296,16 @@ end
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
-  param user
+  param user do
+    Users.read(value)
+  end
 
-  let user_id = Params.get("user")
-  let user = Users.read(user_id)
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
 
   condition Auth.user_id == user_id, permission_error
 
@@ -271,10 +354,16 @@ end
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
-  param user
+  param user do
+    Users.read(value)
+  end
 
-  let user_id = Params.get("user")
-  let user = Users.read(user_id)
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
 
   condition Auth.user_id == user_id, permission_error
 
