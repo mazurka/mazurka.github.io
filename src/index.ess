@@ -28,9 +28,7 @@ hr
 .hljs
   &-diff-line
     &-removed
-      background-color = __.color.red.lighter
-      .hljs:hover &
-        display none
+      display none
 
     &-unchanged
       opacity .3
