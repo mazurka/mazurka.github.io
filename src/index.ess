@@ -24,3 +24,22 @@ hr
   h6:hover &:after
     margin-left .5em
     opacity 1
+
+.hljs
+  &-diff-line
+    &-removed
+      background-color = __.color.red.lighter
+
+      .hljs:hover &
+        display none
+
+    &-unchanged
+      opacity .3
+
+      .hljs:hover &
+        opacity 1
+
+    &-added,
+    &-removed,
+    &-unchanged
+      transition all 100ms linear
