@@ -40,4 +40,4 @@ hr
     &-added,
     &-removed,
     &-unchanged
-      transition all 100ms linear
+      transition all 200ms linear

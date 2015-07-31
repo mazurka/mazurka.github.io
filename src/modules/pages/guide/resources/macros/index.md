@@ -84,6 +84,29 @@ Keep in mind that the expressions in `let` are lazy, meaning they will only be c
 
 ### condition
 
+With the `condition` macro we can specifiy requirements that need to be truthy in order for a client to realize the action. This is usually checking that a user has the correct permissions to access the resource. In this example, we want to restrict access to logged in users so we check that the client has an authorized `user_id`.
+
+```elixir[condition_no_error<-let]
+defmodule MyAPI.Resource.Users.Read do
+  use Mazurka.Resource
+
+  param user do
+    Users.read(value)
+  end
+
+  let friends = Users.find_friends(user.id)
+  let likes do
+    movies = Movies.find_liked_by_user(user.id)
+    books = Books.find_liked_by_user(user.id)
+    movies ++ books
+  end
+
+  condition Auth.user_id
+end
+```
+
+If we don't want the default error message, we can pass an [error handler](#error) function to override the response
+
 ```elixir[condition<-let]
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
@@ -99,9 +122,11 @@ defmodule MyAPI.Resource.Users.Read do
     movies ++ books
   end
 
-  condition Auth.user_id == user_id, permission_error
+  condition Auth.user_id, permission_error
 end
 ```
+
+We can add as many condition declarations as we need to lock down the resource but keep in mind that all of them must be truthy in order for a request to succeed.
 
 ### mediatype
 
@@ -120,7 +145,7 @@ defmodule MyAPI.Resource.Users.Read do
     movies ++ books
   end
 
-  condition Auth.user_id == user_id, permission_error
+  condition Auth.user_id, permission_error
 
   mediatype Mazurka.Mediatype.Hyperjson do
     # add mediatype actions here
@@ -145,7 +170,7 @@ defmodule MyAPI.Resource.Users.Read do
     movies ++ books
   end
 
-  condition Auth.user_id == user_id, permission_error
+  condition Auth.user_id, permission_error
 
   mediatype Mazurka.Mediatype.Hyperjson do
     # add mediatype actions here
@@ -174,7 +199,7 @@ defmodule MyAPI.Resource.Users.Read do
     movies ++ books
   end
 
-  condition Auth.user_id == user_id, permission_error
+  condition Auth.user_id, permission_error
 
   mediatype Mazurka.Mediatype.Hyperjson do
     # add mediatype actions here
@@ -213,7 +238,7 @@ defmodule MyAPI.Resource.Users.Read do
     movies ++ books
   end
 
-  condition Auth.user_id == user_id, permission_error
+  condition Auth.user_id, permission_error
 
   mediatype Mazurka.Mediatype.Hyperjson do
     action do
@@ -257,7 +282,7 @@ defmodule MyAPI.Resource.Users.Read do
     movies ++ books
   end
 
-  condition Auth.user_id == user_id, permission_error
+  condition Auth.user_id, permission_error
 
   mediatype Mazurka.Mediatype.Hyperjson do
     action do
@@ -307,7 +332,7 @@ defmodule MyAPI.Resource.Users.Read do
     movies ++ books
   end
 
-  condition Auth.user_id == user_id, permission_error
+  condition Auth.user_id, permission_error
 
   mediatype Mazurka.Mediatype.Hyperjson do
     action do
@@ -365,7 +390,7 @@ defmodule MyAPI.Resource.Users.Read do
     movies ++ books
   end
 
-  condition Auth.user_id == user_id, permission_error
+  condition Auth.user_id, permission_error
 
   mediatype Mazurka.Mediatype.Hyperjson do
     action do
