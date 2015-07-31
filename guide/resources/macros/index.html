@@ -52,7 +52,7 @@
 </span>
 <span id=code-condition_no_error-11 class=hljs-diff-line-added>  condition <span class=hljs-constant>Auth.</span>user_id
 </span><span id=code-condition_no_error-12 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
-</code></pre><p>If we don&#39;t want the default error message, we can pass an <a href=#error>error handler</a> function to override the response</p><pre><code class="hljs elixir[condition&lt;-let]"><span id=code-condition-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</code></pre><p>If we don&#39;t want the default error message, we can pass an <a href=#error>error handler</a> function to override the response</p><pre><code class="hljs elixir[condition&lt;-condition_no_error]"><span id=code-condition-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
 </span><span id=code-condition-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
 </span>
 <span id=code-condition-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
@@ -66,8 +66,9 @@
 </span><span id=code-condition-9 class=hljs-diff-line-unchanged>    movies ++ books
 </span><span id=code-condition-10 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
 </span>
-<span id=code-condition-11 class=hljs-diff-line-added>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
-</span><span id=code-condition-12 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+<span id=code-condition-11 class=hljs-diff-line-removed>  condition <span class=hljs-constant>Auth.</span>user_id
+</span><span id=code-condition-12 class=hljs-diff-line-added>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span><span id=code-condition-13 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
 </code></pre><p>We can add as many condition declarations as we need to lock down the resource but keep in mind that all of them must be truthy in order for a request to succeed.</p><h3>mediatype<a id=mediatype class=Header-anchor href=#mediatype aria-hidden=true><span class=Header-anchor-icon></span></a></h3><pre><code class="hljs elixir[mediatype&lt;-condition]"><span id=code-mediatype-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
 </span><span id=code-mediatype-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
 </span>

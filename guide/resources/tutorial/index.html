@@ -1,0 +1,524 @@
+<!DOCTYPE html><html><head><title>Mazurka | Resources - Tutorial</title><meta name=description content="Hypermedia toolkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta property=og:title content="Mazurka | Resources - Tutorial"><meta property=og:site_name content=mazurka.io><meta property=og:url content="https://www.mazurka.io/guide/resources/tutorial/"><meta property=og:description content="Hypermedia toolkit"><meta property=og:type content=article><meta property=og:locale content=en_US><link rel=stylesheet href=/main.min.css><link rel=icon type=image/png href=/favicon.png><body><div class=Toolbar><div class=Toolbar-contents><a href="/" class=Toolbar-logo><div class=Toolbar-logo-image></div><div class=Toolbar-logo-text>Mazurka</div></a><div class=Toolbar-links><a href=/guide/introduction/overview class=Toolbar-link>Guide</a><a href="http://hexdocs.pm/mazurka/" class=Toolbar-link>Documentation</a><a href=https://github.com/mazurka/mazurka class=Toolbar-link>Repository</a><a href=https://github.com/mazurka/mazurka/blob/master/CHANGELOG.md class=Toolbar-link>Changelog</a></div></div></div><div class=Guide><div class=Guide-sidenav><ul class=Guide-sidenav-links><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/introduction/overview/" class=Guide-sidenav-link-anchor>Introduction</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/introduction/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/introduction/design/" class=Guide-sidenav-sublink-anchor>Design</a></li><li class=Guide-sidenav-sublink><a href="/guide/introduction/installation/" class=Guide-sidenav-sublink-anchor>Installation</a></li><li class=Guide-sidenav-sublink><a href="/guide/introduction/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/protocols/overview/" class=Guide-sidenav-link-anchor>Protocols</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/protocols/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/protocols/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/resources/overview/" class="Guide-sidenav-link-anchor is-active">Resources</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/resources/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/resources/design/" class=Guide-sidenav-sublink-anchor>Design</a></li><li class=Guide-sidenav-sublink><a href="/guide/resources/tutorial/" class="Guide-sidenav-sublink-anchor is-active">Tutorial</a></li><li class=Guide-sidenav-sublink><a href="/guide/resources/mediatypes/" class=Guide-sidenav-sublink-anchor>Mediatypes</a></li><li class=Guide-sidenav-sublink><a href="/guide/resources/testing/" class=Guide-sidenav-sublink-anchor>Testing</a></li><li class=Guide-sidenav-sublink><a href="/guide/resources/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/dispatch/overview/" class=Guide-sidenav-link-anchor>Dispatch</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/dispatch/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/dispatch/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li><li class=Guide-sidenav-link><div class=Guide-sidenav-link-text><a href="/guide/services/overview/" class=Guide-sidenav-link-anchor>Services</a></div><ul class=Guide-sidenav-sublinks><li class=Guide-sidenav-sublink><a href="/guide/services/overview/" class=Guide-sidenav-sublink-anchor>Overview</a></li><li class=Guide-sidenav-sublink><a href="/guide/services/references/" class=Guide-sidenav-sublink-anchor>References</a></li></ul></li></ul></div><div class=Guide-content><a target=__blank href=https://github.com/mazurka/mazurka.github.io/edit/source/src/modules/pages/guide/resources/tutorial.md class=Guide-content-edit>Edit this page</a><h1>Tutorial<a id=tutorial class=Header-anchor href=#tutorial aria-hidden=true><span class=Header-anchor-icon></span></a></h1><p>When declaring a Mazurka resource several macros are imported for resource construction and definition. We&#39;ll walk through examples of each one as we build the <code>MyAPI.Resource.Users.Read</code> resource.</p><pre><code class="hljs elixir[initial]"><span id=code-initial-1><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span></span>
+<span id=code-initial-2>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span></span>
+<span id=code-initial-3><span class=hljs-keyword>end</span></span>
+</code></pre><h2>param<a id=param class=Header-anchor href=#param aria-hidden=true><span class=Header-anchor-icon></span></a></h2><p>The <code>param</code> macro declares what parameters should be passed into the resource. This information can be used to generate documentation and verify that protocols or other resources are passing the correct information.</p><p>In our example resource we&#39;re declaring that <code>user</code> is required to respond to a request.</p><pre><code class="hljs elixir[param_no_validate&lt;-initial]"><span id=code-param_no_validate-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-param_no_validate-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-param_no_validate-2 class=hljs-diff-line-added>  param user
+</span><span id=code-param_no_validate-3 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>If we want to validate or transform the param we can pass a <code>do</code> block. The value of the parameter will be available as the variable <code>value</code>. This makes it easy to check the value against a <a href=/guide/services/overview>service</a>.</p><p>In this example we&#39;ll call the <code>Users.read/1</code> service and get a <code>User</code> struct back.</p><pre><code class="hljs elixir[param&lt;-initial]"><span id=code-param-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-param-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-param-2 class=hljs-diff-line-added>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-param-3 class=hljs-diff-line-added>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-param-4 class=hljs-diff-line-added>  <span class=hljs-keyword>end</span>
+</span><span id=code-param-5 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>We can add as many of the <code>param</code> delcarations as we would like, however in this example, we&#39;ll just stick to one.</p><h2>let<a id=let class=Header-anchor href=#let aria-hidden=true><span class=Header-anchor-icon></span></a></h2><p>Now that we&#39;ve set up our user <a href=#param>param</a> we can start declaring variables with <code>let</code>.</p><p>Here, we&#39;ll call the <code>Users.find_friends/1</code> service which will return a list of <code>User</code> ids.</p><pre><code class="hljs elixir[init_let&lt;-param]"><span id=code-init_let-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-init_let-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-init_let-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-init_let-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-init_let-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-init_let-5 class=hljs-diff-line-added>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-init_let-6 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>We can also declare a variable from the result of a <code>do</code> block expression</p><p>Now we&#39;ll merge the result of <code>Movies.find_liked_by_user/1</code> and <code>Books.find_liked_by_user/1</code> into the variable <code>likes</code>. Both of these services return a list of ids.</p><pre><code class="hljs elixir[let&lt;-param]"><span id=code-let-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-let-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-let-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-let-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-let-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-let-5 class=hljs-diff-line-added>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-let-6 class=hljs-diff-line-added>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-let-7 class=hljs-diff-line-added>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-let-8 class=hljs-diff-line-added>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-let-9 class=hljs-diff-line-added>    movies ++ books
+</span><span id=code-let-10 class=hljs-diff-line-added>  <span class=hljs-keyword>end</span>
+</span><span id=code-let-11 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>Keep in mind that the expressions in <code>let</code> are lazy, meaning they will only be computed if the variable name is actually used. This can be a little different than what most programmers are used to. The benefit is we&#39;re never requesting data we don&#39;t need. Check out the <a href=/guide/resources/design>resources design</a> page for more information regarding laziness.</p><h2>condition<a id=condition class=Header-anchor href=#condition aria-hidden=true><span class=Header-anchor-icon></span></a></h2><p>With the <code>condition</code> macro we can specifiy requirements that need to be truthy in order for a client to realize the action. This is usually checking that a user has the correct permissions to access the resource. In this example, we want to restrict access to logged in users so we check that the client has an authorized <code>user_id</code>.</p><pre><code class="hljs elixir[condition_no_error&lt;-let]"><span id=code-condition_no_error-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-condition_no_error-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-condition_no_error-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-condition_no_error-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-condition_no_error-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-condition_no_error-5 class=hljs-diff-line-unchanged>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-condition_no_error-6 class=hljs-diff-line-unchanged>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-condition_no_error-7 class=hljs-diff-line-unchanged>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-condition_no_error-8 class=hljs-diff-line-unchanged>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-condition_no_error-9 class=hljs-diff-line-unchanged>    movies ++ books
+</span><span id=code-condition_no_error-10 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-condition_no_error-11 class=hljs-diff-line-added>  condition <span class=hljs-constant>Auth.</span>user_id
+</span><span id=code-condition_no_error-12 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>If we don&#39;t want the default error message, we can pass an <a href=#error>error handler</a> function to override the response</p><pre><code class="hljs elixir[condition&lt;-condition_no_error]"><span id=code-condition-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-condition-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-condition-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-condition-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-condition-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-condition-5 class=hljs-diff-line-unchanged>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-condition-6 class=hljs-diff-line-unchanged>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-condition-7 class=hljs-diff-line-unchanged>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-condition-8 class=hljs-diff-line-unchanged>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-condition-9 class=hljs-diff-line-unchanged>    movies ++ books
+</span><span id=code-condition-10 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-condition-11 class=hljs-diff-line-removed>  condition <span class=hljs-constant>Auth.</span>user_id
+</span><span id=code-condition-12 class=hljs-diff-line-added>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span><span id=code-condition-13 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>We can add as many condition declarations as we need to lock down the resource but keep in mind that all of them must be truthy in order for a request to succeed.</p><h2>mediatype<a id=mediatype class=Header-anchor href=#mediatype aria-hidden=true><span class=Header-anchor-icon></span></a></h2><p>The <code>mediatype</code> block is where we declare the available mediatypes for this resource. In this example we&#39;ll use the <code>hyper+json</code> mediatype. Each individual mediatype can import its own set of macros in this block. Check out the <a href=/guide/resources/mediatypes>mediatypes section</a> for more information on the types available.</p><pre><code class="hljs elixir[mediatype&lt;-condition]"><span id=code-mediatype-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-mediatype-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-mediatype-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-mediatype-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-mediatype-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-mediatype-5 class=hljs-diff-line-unchanged>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-mediatype-6 class=hljs-diff-line-unchanged>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-mediatype-7 class=hljs-diff-line-unchanged>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-mediatype-8 class=hljs-diff-line-unchanged>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-mediatype-9 class=hljs-diff-line-unchanged>    movies ++ books
+</span><span id=code-mediatype-10 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-mediatype-11 class=hljs-diff-line-unchanged>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span>
+<span id=code-mediatype-12 class=hljs-diff-line-added>  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+</span>
+<span id=code-mediatype-13 class=hljs-diff-line-added>  <span class=hljs-keyword>end</span>
+</span><span id=code-mediatype-14 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><h2>action<a id=action class=Header-anchor href=#action aria-hidden=true><span class=Header-anchor-icon></span></a></h2><p>Every <a href=#mediatype>mediatype</a> block needs an action handler. This is called after all of the conditions are met. Inside, we define what happens when this resource is requested by a client. All side-effects should be contained in this block. The response from the action will be serialized and sent to the client.</p><p>Here we&#39;re just going to send a read-only response to the client. This will include the user&#39;s <code>name</code> and <code>avatar</code>.</p><pre><code class="hljs elixir[action_init&lt;-mediatype]"><span id=code-action_init-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-action_init-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-action_init-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-action_init-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-action_init-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-action_init-5 class=hljs-diff-line-unchanged>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-action_init-6 class=hljs-diff-line-unchanged>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-action_init-7 class=hljs-diff-line-unchanged>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-action_init-8 class=hljs-diff-line-unchanged>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-action_init-9 class=hljs-diff-line-unchanged>    movies ++ books
+</span><span id=code-action_init-10 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-action_init-11 class=hljs-diff-line-unchanged>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span>
+<span id=code-action_init-12 class=hljs-diff-line-unchanged>  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+</span>
+<span id=code-action_init-13 class=hljs-diff-line-added>    action <span class=hljs-keyword>do</span>
+</span><span id=code-action_init-14 class=hljs-diff-line-added>      %{
+</span><span id=code-action_init-15 class=hljs-diff-line-added>        <span class=hljs-string>"name"</span> =&gt; user.name,
+</span><span id=code-action_init-16 class=hljs-diff-line-added>        <span class=hljs-string>"avatar"</span> =&gt; %{
+</span><span id=code-action_init-17 class=hljs-diff-line-added>          <span class=hljs-string>"src"</span> =&gt; user.image
+</span><span id=code-action_init-18 class=hljs-diff-line-added>        },
+</span><span id=code-action_init-19 class=hljs-diff-line-added>      }
+</span><span id=code-action_init-20 class=hljs-diff-line-added>    <span class=hljs-keyword>end</span>
+</span><span id=code-action_init-21 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span><span id=code-action_init-22 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>Now we can finally make a request to this resource! Let&#39;s say we&#39;ve mounted it at <code>/users/:user</code>.</p><pre><code class="hljs sh[req_action_init]"><span id=code-req_action_init-1>$ curl http://localhost:<span class=hljs-number>4000</span>/users/u1</span>
+<span id=code-req_action_init-2></span>
+<span id=code-req_action_init-3>{</span>
+<span id=code-req_action_init-4>  <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u1"</span>,</span>
+<span id=code-req_action_init-5>  <span class=hljs-string>"name"</span>: <span class=hljs-string>"Joe"</span>,</span>
+<span id=code-req_action_init-6>  <span class=hljs-string>"avatar"</span>: {</span>
+<span id=code-req_action_init-7>    <span class=hljs-string>"src"</span>: <span class=hljs-string>"https://avatars1.githubusercontent.com/u/99915?v=3&amp;s=460"</span></span>
+<span id=code-req_action_init-8>  }</span>
+<span id=code-req_action_init-9>}</span>
+</code></pre><p>We can use our <code>let</code> variable inside of action as well.</p><pre><code class="hljs elixir[action&lt;-action_init]"><span id=code-action-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-action-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-action-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-action-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-action-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-action-5 class=hljs-diff-line-unchanged>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-action-6 class=hljs-diff-line-unchanged>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-action-7 class=hljs-diff-line-unchanged>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-action-8 class=hljs-diff-line-unchanged>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-action-9 class=hljs-diff-line-unchanged>    movies ++ books
+</span><span id=code-action-10 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-action-11 class=hljs-diff-line-unchanged>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span>
+<span id=code-action-12 class=hljs-diff-line-unchanged>  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+</span><span id=code-action-13 class=hljs-diff-line-unchanged>    action <span class=hljs-keyword>do</span>
+</span><span id=code-action-14 class=hljs-diff-line-unchanged>      %{
+</span><span id=code-action-15 class=hljs-diff-line-unchanged>        <span class=hljs-string>"name"</span> =&gt; user.name,
+</span><span id=code-action-16 class=hljs-diff-line-unchanged>        <span class=hljs-string>"avatar"</span> =&gt; %{
+</span><span id=code-action-17 class=hljs-diff-line-unchanged>          <span class=hljs-string>"src"</span> =&gt; user.image
+</span><span id=code-action-18 class=hljs-diff-line-unchanged>        },
+</span><span id=code-action-19 class=hljs-diff-line-added>        <span class=hljs-string>"friends"</span> =&gt; <span class=hljs-keyword>for</span> friend &lt;- friends <span class=hljs-keyword>do</span>
+</span><span id=code-action-20 class=hljs-diff-line-added>          friend
+</span><span id=code-action-21 class=hljs-diff-line-added>        <span class=hljs-keyword>end</span>,
+</span><span id=code-action-22 class=hljs-diff-line-added>        <span class=hljs-string>"likes"</span> =&gt; <span class=hljs-keyword>for</span> like &lt;- likes <span class=hljs-keyword>do</span>
+</span><span id=code-action-23 class=hljs-diff-line-added>          like
+</span><span id=code-action-24 class=hljs-diff-line-added>        <span class=hljs-keyword>end</span>,
+</span><span id=code-action-25 class=hljs-diff-line-unchanged>      }
+</span><span id=code-action-26 class=hljs-diff-line-unchanged>    <span class=hljs-keyword>end</span>
+</span><span id=code-action-27 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span><span id=code-action-28 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>Let&#39;s make another request and see how it&#39;s changed.</p><pre><code class="hljs sh[req_action&lt;-req_action_init]"><span id=code-req_action-0 class=hljs-diff-line-unchanged>$ curl http://localhost:<span class=hljs-number>4000</span>/users/u1
+</span>
+<span id=code-req_action-1 class=hljs-diff-line-unchanged>{
+</span><span id=code-req_action-2 class=hljs-diff-line-unchanged>  <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u1"</span>,
+</span><span id=code-req_action-3 class=hljs-diff-line-unchanged>  <span class=hljs-string>"name"</span>: <span class=hljs-string>"Joe"</span>,
+</span><span id=code-req_action-4 class=hljs-diff-line-unchanged>  <span class=hljs-string>"avatar"</span>: {
+</span><span id=code-req_action-5 class=hljs-diff-line-unchanged>    <span class=hljs-string>"src"</span>: <span class=hljs-string>"https://avatars1.githubusercontent.com/u/99915?v=3&amp;s=460"</span>
+</span><span id=code-req_action-6 class=hljs-diff-line-removed>  }
+</span><span id=code-req_action-7 class=hljs-diff-line-added>  },
+</span><span id=code-req_action-8 class=hljs-diff-line-added>  <span class=hljs-string>"friends"</span>: [
+</span><span id=code-req_action-9 class=hljs-diff-line-added>    <span class=hljs-string>"u2"</span>,
+</span><span id=code-req_action-10 class=hljs-diff-line-added>    <span class=hljs-string>"u3"</span>
+</span><span id=code-req_action-11 class=hljs-diff-line-added>  ],
+</span><span id=code-req_action-12 class=hljs-diff-line-added>  <span class=hljs-string>"likes"</span>: [
+</span><span id=code-req_action-13 class=hljs-diff-line-added>    <span class=hljs-string>"m1"</span>,
+</span><span id=code-req_action-14 class=hljs-diff-line-added>    <span class=hljs-string>"m2"</span>,
+</span><span id=code-req_action-15 class=hljs-diff-line-added>    <span class=hljs-string>"b1"</span>,
+</span><span id=code-req_action-16 class=hljs-diff-line-added>    <span class=hljs-string>"b2"</span>
+</span><span id=code-req_action-17 class=hljs-diff-line-added>  ]
+</span><span id=code-req_action-18 class=hljs-diff-line-unchanged>}</span>
+</code></pre><h2>link_to<a id=link_to class=Header-anchor href=#link_to aria-hidden=true><span class=Header-anchor-icon></span></a></h2><p>You&#39;ll notice in the <a href=#action>action</a> section we iterated over the list of friend and likes and returned their ids. This would be normal for traditional APIs. However, in hypermedia APIs we want to return a link to the resource so the client can easily resolve it. We can accomplish this with the <code>link_to</code> function.</p><pre><code class="hljs elixir[link_to&lt;-action]"><span id=code-link_to-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-link_to-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-link_to-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-link_to-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-link_to-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-link_to-5 class=hljs-diff-line-unchanged>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-link_to-6 class=hljs-diff-line-unchanged>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-link_to-7 class=hljs-diff-line-unchanged>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-link_to-8 class=hljs-diff-line-unchanged>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-link_to-9 class=hljs-diff-line-unchanged>    movies ++ books
+</span><span id=code-link_to-10 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-link_to-11 class=hljs-diff-line-unchanged>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span>
+<span id=code-link_to-12 class=hljs-diff-line-unchanged>  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+</span><span id=code-link_to-13 class=hljs-diff-line-unchanged>    action <span class=hljs-keyword>do</span>
+</span><span id=code-link_to-14 class=hljs-diff-line-unchanged>      %{
+</span><span id=code-link_to-15 class=hljs-diff-line-unchanged>        <span class=hljs-string>"name"</span> =&gt; user.name,
+</span><span id=code-link_to-16 class=hljs-diff-line-unchanged>        <span class=hljs-string>"avatar"</span> =&gt; %{
+</span><span id=code-link_to-17 class=hljs-diff-line-unchanged>          <span class=hljs-string>"src"</span> =&gt; user.image
+</span><span id=code-link_to-18 class=hljs-diff-line-unchanged>        },
+</span><span id=code-link_to-19 class=hljs-diff-line-unchanged>        <span class=hljs-string>"friends"</span> =&gt; <span class=hljs-keyword>for</span> friend &lt;- friends <span class=hljs-keyword>do</span>
+</span><span id=code-link_to-20 class=hljs-diff-line-removed>          friend
+</span><span id=code-link_to-21 class=hljs-diff-line-added>          link_to(<span class=hljs-constant>MyAPI.Resource.Users.Read,</span> <span class=hljs-symbol>user:</span> friend)
+</span><span id=code-link_to-22 class=hljs-diff-line-unchanged>        <span class=hljs-keyword>end</span>,
+</span><span id=code-link_to-23 class=hljs-diff-line-unchanged>        <span class=hljs-string>"likes"</span> =&gt; <span class=hljs-keyword>for</span> like &lt;- likes <span class=hljs-keyword>do</span>
+</span><span id=code-link_to-24 class=hljs-diff-line-removed>          like
+</span><span id=code-link_to-25 class=hljs-diff-line-added>          link_to(<span class=hljs-constant>MyAPI.Resource.Like.Read,</span> <span class=hljs-symbol>item:</span> like)
+</span><span id=code-link_to-26 class=hljs-diff-line-unchanged>        <span class=hljs-keyword>end</span>,
+</span><span id=code-link_to-27 class=hljs-diff-line-unchanged>      }
+</span><span id=code-link_to-28 class=hljs-diff-line-unchanged>    <span class=hljs-keyword>end</span>
+</span><span id=code-link_to-29 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span><span id=code-link_to-30 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>Now if we request the resource we get something like this:</p><pre><code class="hljs sh[req_link_to&lt;-req_action]"><span id=code-req_link_to-0 class=hljs-diff-line-unchanged>$ curl http://localhost:<span class=hljs-number>4000</span>/users/u1
+</span>
+<span id=code-req_link_to-1 class=hljs-diff-line-unchanged>{
+</span><span id=code-req_link_to-2 class=hljs-diff-line-unchanged>  <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u1"</span>,
+</span><span id=code-req_link_to-3 class=hljs-diff-line-unchanged>  <span class=hljs-string>"name"</span>: <span class=hljs-string>"Joe"</span>,
+</span><span id=code-req_link_to-4 class=hljs-diff-line-unchanged>  <span class=hljs-string>"avatar"</span>: {
+</span><span id=code-req_link_to-5 class=hljs-diff-line-unchanged>    <span class=hljs-string>"src"</span>: <span class=hljs-string>"https://avatars1.githubusercontent.com/u/99915?v=3&amp;s=460"</span>
+</span><span id=code-req_link_to-6 class=hljs-diff-line-unchanged>  },
+</span><span id=code-req_link_to-7 class=hljs-diff-line-unchanged>  <span class=hljs-string>"friends"</span>: [
+</span><span id=code-req_link_to-8 class=hljs-diff-line-removed>    <span class=hljs-string>"u2"</span>,
+</span><span id=code-req_link_to-9 class=hljs-diff-line-removed>    <span class=hljs-string>"u3"</span>
+</span><span id=code-req_link_to-10 class=hljs-diff-line-added>    {
+</span><span id=code-req_link_to-11 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u2"</span>
+</span><span id=code-req_link_to-12 class=hljs-diff-line-added>    },
+</span><span id=code-req_link_to-13 class=hljs-diff-line-added>    {
+</span><span id=code-req_link_to-14 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u3"</span>
+</span><span id=code-req_link_to-15 class=hljs-diff-line-added>    }
+</span><span id=code-req_link_to-16 class=hljs-diff-line-unchanged>  ],
+</span><span id=code-req_link_to-17 class=hljs-diff-line-unchanged>  <span class=hljs-string>"likes"</span>: [
+</span><span id=code-req_link_to-18 class=hljs-diff-line-removed>    <span class=hljs-string>"m1"</span>,
+</span><span id=code-req_link_to-19 class=hljs-diff-line-removed>    <span class=hljs-string>"m2"</span>,
+</span><span id=code-req_link_to-20 class=hljs-diff-line-removed>    <span class=hljs-string>"b1"</span>,
+</span><span id=code-req_link_to-21 class=hljs-diff-line-removed>    <span class=hljs-string>"b2"</span>
+</span><span id=code-req_link_to-22 class=hljs-diff-line-added>    {
+</span><span id=code-req_link_to-23 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/m1"</span>
+</span><span id=code-req_link_to-24 class=hljs-diff-line-added>    },
+</span><span id=code-req_link_to-25 class=hljs-diff-line-added>    {
+</span><span id=code-req_link_to-26 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/m2"</span>
+</span><span id=code-req_link_to-27 class=hljs-diff-line-added>    },
+</span><span id=code-req_link_to-28 class=hljs-diff-line-added>    {
+</span><span id=code-req_link_to-29 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/b1"</span>
+</span><span id=code-req_link_to-30 class=hljs-diff-line-added>    },
+</span><span id=code-req_link_to-31 class=hljs-diff-line-added>    {
+</span><span id=code-req_link_to-32 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/b2"</span>
+</span><span id=code-req_link_to-33 class=hljs-diff-line-added>    }
+</span><span id=code-req_link_to-34 class=hljs-diff-line-unchanged>  ]
+</span><span id=code-req_link_to-35 class=hljs-diff-line-unchanged>}</span>
+</code></pre><h2>affordance<a id=affordance class=Header-anchor href=#affordance aria-hidden=true><span class=Header-anchor-icon></span></a></h2><p>In the previous section we saw that <code>link_to</code> returned a hyperlink to the resource. What if we wanted to change what the link looks like? Glad you asked. That&#39;s what <code>affordance</code> is for.</p><p>In this example we&#39;ll add the <code>name</code> property to the link itself so clients won&#39;t have to request all of the friend resources just for the name.</p><pre><code class="hljs elixir[affordance_w_name&lt;-link_to]"><span id=code-affordance_w_name-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-affordance_w_name-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-affordance_w_name-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-affordance_w_name-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-affordance_w_name-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-affordance_w_name-5 class=hljs-diff-line-unchanged>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-affordance_w_name-6 class=hljs-diff-line-unchanged>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-affordance_w_name-7 class=hljs-diff-line-unchanged>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-affordance_w_name-8 class=hljs-diff-line-unchanged>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-affordance_w_name-9 class=hljs-diff-line-unchanged>    movies ++ books
+</span><span id=code-affordance_w_name-10 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-affordance_w_name-11 class=hljs-diff-line-unchanged>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span>
+<span id=code-affordance_w_name-12 class=hljs-diff-line-unchanged>  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+</span><span id=code-affordance_w_name-13 class=hljs-diff-line-unchanged>    action <span class=hljs-keyword>do</span>
+</span><span id=code-affordance_w_name-14 class=hljs-diff-line-unchanged>      %{
+</span><span id=code-affordance_w_name-15 class=hljs-diff-line-unchanged>        <span class=hljs-string>"name"</span> =&gt; user.name,
+</span><span id=code-affordance_w_name-16 class=hljs-diff-line-unchanged>        <span class=hljs-string>"avatar"</span> =&gt; %{
+</span><span id=code-affordance_w_name-17 class=hljs-diff-line-unchanged>          <span class=hljs-string>"src"</span> =&gt; user.image
+</span><span id=code-affordance_w_name-18 class=hljs-diff-line-unchanged>        },
+</span><span id=code-affordance_w_name-19 class=hljs-diff-line-unchanged>        <span class=hljs-string>"friends"</span> =&gt; <span class=hljs-keyword>for</span> friend &lt;- friends <span class=hljs-keyword>do</span>
+</span><span id=code-affordance_w_name-20 class=hljs-diff-line-unchanged>          link_to(<span class=hljs-constant>MyAPI.Resource.Users.Read,</span> <span class=hljs-symbol>user:</span> friend)
+</span><span id=code-affordance_w_name-21 class=hljs-diff-line-unchanged>        <span class=hljs-keyword>end</span>,
+</span><span id=code-affordance_w_name-22 class=hljs-diff-line-unchanged>        <span class=hljs-string>"likes"</span> =&gt; <span class=hljs-keyword>for</span> like &lt;- likes <span class=hljs-keyword>do</span>
+</span><span id=code-affordance_w_name-23 class=hljs-diff-line-unchanged>          link_to(<span class=hljs-constant>MyAPI.Resource.Like.Read,</span> <span class=hljs-symbol>item:</span> like)
+</span><span id=code-affordance_w_name-24 class=hljs-diff-line-unchanged>        <span class=hljs-keyword>end</span>,
+</span><span id=code-affordance_w_name-25 class=hljs-diff-line-unchanged>      }
+</span><span id=code-affordance_w_name-26 class=hljs-diff-line-unchanged>    <span class=hljs-keyword>end</span>
+</span>
+<span id=code-affordance_w_name-27 class=hljs-diff-line-added>    affordance <span class=hljs-keyword>do</span>
+</span><span id=code-affordance_w_name-28 class=hljs-diff-line-added>      %{
+</span><span id=code-affordance_w_name-29 class=hljs-diff-line-added>        <span class=hljs-string>"name"</span> =&gt; user.name
+</span><span id=code-affordance_w_name-30 class=hljs-diff-line-added>      }
+</span><span id=code-affordance_w_name-31 class=hljs-diff-line-added>    <span class=hljs-keyword>end</span>
+</span><span id=code-affordance_w_name-32 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span><span id=code-affordance_w_name-33 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>What does that response look like? You guessed it.</p><pre><code class="hljs sh[req_affordance&lt;-req_link_to]"><span id=code-req_affordance-0 class=hljs-diff-line-unchanged>$ curl http://localhost:<span class=hljs-number>4000</span>/users/u1
+</span>
+<span id=code-req_affordance-1 class=hljs-diff-line-unchanged>{
+</span><span id=code-req_affordance-2 class=hljs-diff-line-unchanged>  <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u1"</span>,
+</span><span id=code-req_affordance-3 class=hljs-diff-line-unchanged>  <span class=hljs-string>"name"</span>: <span class=hljs-string>"Joe"</span>,
+</span><span id=code-req_affordance-4 class=hljs-diff-line-unchanged>  <span class=hljs-string>"avatar"</span>: {
+</span><span id=code-req_affordance-5 class=hljs-diff-line-unchanged>    <span class=hljs-string>"src"</span>: <span class=hljs-string>"https://avatars1.githubusercontent.com/u/99915?v=3&amp;s=460"</span>
+</span><span id=code-req_affordance-6 class=hljs-diff-line-unchanged>  },
+</span><span id=code-req_affordance-7 class=hljs-diff-line-unchanged>  <span class=hljs-string>"friends"</span>: [
+</span><span id=code-req_affordance-8 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-9 class=hljs-diff-line-removed>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u2"</span>
+</span><span id=code-req_affordance-10 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u2"</span>,
+</span><span id=code-req_affordance-11 class=hljs-diff-line-added>      <span class=hljs-string>"name"</span>: <span class=hljs-string>"Robert"</span>
+</span><span id=code-req_affordance-12 class=hljs-diff-line-unchanged>    },
+</span><span id=code-req_affordance-13 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-14 class=hljs-diff-line-removed>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u3"</span>
+</span><span id=code-req_affordance-15 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u3"</span>,
+</span><span id=code-req_affordance-16 class=hljs-diff-line-added>      <span class=hljs-string>"name"</span>: <span class=hljs-string>"Mike"</span>
+</span><span id=code-req_affordance-17 class=hljs-diff-line-unchanged>    }
+</span><span id=code-req_affordance-18 class=hljs-diff-line-unchanged>  ],
+</span><span id=code-req_affordance-19 class=hljs-diff-line-unchanged>  <span class=hljs-string>"likes"</span>: [
+</span><span id=code-req_affordance-20 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-21 class=hljs-diff-line-unchanged>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/m1"</span>
+</span><span id=code-req_affordance-22 class=hljs-diff-line-unchanged>    },
+</span><span id=code-req_affordance-23 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-24 class=hljs-diff-line-unchanged>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/m2"</span>
+</span><span id=code-req_affordance-25 class=hljs-diff-line-unchanged>    },
+</span><span id=code-req_affordance-26 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-27 class=hljs-diff-line-unchanged>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/b1"</span>
+</span><span id=code-req_affordance-28 class=hljs-diff-line-unchanged>    },
+</span><span id=code-req_affordance-29 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-30 class=hljs-diff-line-unchanged>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/b2"</span>
+</span><span id=code-req_affordance-31 class=hljs-diff-line-unchanged>    }
+</span><span id=code-req_affordance-32 class=hljs-diff-line-unchanged>  ]
+</span><span id=code-req_affordance-33 class=hljs-diff-line-unchanged>}</span>
+</code></pre><p>Affordances can also be used to build forms. In our example we want a user to be able to edit their own information but should not be able to edit anyone else. Let&#39;s say there was a another resource called <code>MyAPI.Resource.Users.Update</code>. This resource will be in charge of checking that the correct permissions exist and then updating the user.</p><pre><code class="hljs elixir[user_update]"><span id=code-user_update-1><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Update </span><span class=hljs-keyword>do</span></span>
+<span id=code-user_update-2>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span></span>
+<span id=code-user_update-3></span>
+<span id=code-user_update-4>  param user <span class=hljs-keyword>do</span></span>
+<span id=code-user_update-5>    <span class=hljs-constant>Users.</span>read(value)</span>
+<span id=code-user_update-6>  <span class=hljs-keyword>end</span></span>
+<span id=code-user_update-7></span>
+<span id=code-user_update-8>  condition <span class=hljs-constant>Auth.</span>user_id == user</span>
+<span id=code-user_update-9></span>
+<span id=code-user_update-10>  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span></span>
+<span id=code-user_update-11>    action <span class=hljs-keyword>do</span></span>
+<span id=code-user_update-12>      <span class=hljs-constant>Users.</span>update(user, %{</span>
+<span id=code-user_update-13>        <span class=hljs-string>"name"</span> =&gt; <span class=hljs-constant>Input.</span>get(<span class=hljs-string>"name"</span>)</span>
+<span id=code-user_update-14>      })</span>
+<span id=code-user_update-15>    <span class=hljs-keyword>end</span></span>
+<span id=code-user_update-16></span>
+<span id=code-user_update-17>    affordance <span class=hljs-keyword>do</span></span>
+<span id=code-user_update-18>      %{</span>
+<span id=code-user_update-19>        <span class=hljs-string>"input"</span> =&gt; %{</span>
+<span id=code-user_update-20>          <span class=hljs-string>"name"</span> =&gt; %{</span>
+<span id=code-user_update-21>            <span class=hljs-string>"type"</span> =&gt; <span class=hljs-string>"text"</span>,</span>
+<span id=code-user_update-22>            <span class=hljs-string>"value"</span> =&gt; user.name,</span>
+<span id=code-user_update-23>            <span class=hljs-string>"required"</span> =&gt; <span class=hljs-keyword>true</span></span>
+<span id=code-user_update-24>          }</span>
+<span id=code-user_update-25>        }</span>
+<span id=code-user_update-26>      }</span>
+<span id=code-user_update-27>    <span class=hljs-keyword>end</span></span>
+<span id=code-user_update-28>  <span class=hljs-keyword>end</span></span>
+<span id=code-user_update-29><span class=hljs-keyword>end</span></span>
+</code></pre><p>Now let&#39;s link to the update resource from our read.</p><pre><code class="hljs elixir[affordance&lt;-affordance_w_name]"><span id=code-affordance-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-affordance-1 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-affordance-2 class=hljs-diff-line-unchanged>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-affordance-3 class=hljs-diff-line-unchanged>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-affordance-4 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-affordance-5 class=hljs-diff-line-unchanged>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-affordance-6 class=hljs-diff-line-unchanged>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-affordance-7 class=hljs-diff-line-unchanged>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-affordance-8 class=hljs-diff-line-unchanged>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-affordance-9 class=hljs-diff-line-unchanged>    movies ++ books
+</span><span id=code-affordance-10 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-affordance-11 class=hljs-diff-line-unchanged>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span>
+<span id=code-affordance-12 class=hljs-diff-line-unchanged>  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+</span><span id=code-affordance-13 class=hljs-diff-line-unchanged>    action <span class=hljs-keyword>do</span>
+</span><span id=code-affordance-14 class=hljs-diff-line-unchanged>      %{
+</span><span id=code-affordance-15 class=hljs-diff-line-unchanged>        <span class=hljs-string>"name"</span> =&gt; user.name,
+</span><span id=code-affordance-16 class=hljs-diff-line-unchanged>        <span class=hljs-string>"avatar"</span> =&gt; %{
+</span><span id=code-affordance-17 class=hljs-diff-line-unchanged>          <span class=hljs-string>"src"</span> =&gt; user.image
+</span><span id=code-affordance-18 class=hljs-diff-line-unchanged>        },
+</span><span id=code-affordance-19 class=hljs-diff-line-unchanged>        <span class=hljs-string>"friends"</span> =&gt; <span class=hljs-keyword>for</span> friend &lt;- friends <span class=hljs-keyword>do</span>
+</span><span id=code-affordance-20 class=hljs-diff-line-unchanged>          link_to(<span class=hljs-constant>MyAPI.Resource.Users.Read,</span> <span class=hljs-symbol>user:</span> friend)
+</span><span id=code-affordance-21 class=hljs-diff-line-unchanged>        <span class=hljs-keyword>end</span>,
+</span><span id=code-affordance-22 class=hljs-diff-line-unchanged>        <span class=hljs-string>"likes"</span> =&gt; <span class=hljs-keyword>for</span> like &lt;- likes <span class=hljs-keyword>do</span>
+</span><span id=code-affordance-23 class=hljs-diff-line-unchanged>          link_to(<span class=hljs-constant>MyAPI.Resource.Like.Read,</span> <span class=hljs-symbol>item:</span> like)
+</span><span id=code-affordance-24 class=hljs-diff-line-unchanged>        <span class=hljs-keyword>end</span>,
+</span><span id=code-affordance-25 class=hljs-diff-line-added>        <span class=hljs-string>"update"</span> =&gt; link_to(<span class=hljs-constant>MyAPI.Resource.Like.Update,</span> <span class=hljs-symbol>user:</span> user.id),
+</span><span id=code-affordance-26 class=hljs-diff-line-unchanged>      }
+</span><span id=code-affordance-27 class=hljs-diff-line-unchanged>    <span class=hljs-keyword>end</span>
+</span>
+<span id=code-affordance-28 class=hljs-diff-line-unchanged>    affordance <span class=hljs-keyword>do</span>
+</span><span id=code-affordance-29 class=hljs-diff-line-unchanged>      %{
+</span><span id=code-affordance-30 class=hljs-diff-line-unchanged>        <span class=hljs-string>"name"</span> =&gt; user.name
+</span><span id=code-affordance-31 class=hljs-diff-line-unchanged>      }
+</span><span id=code-affordance-32 class=hljs-diff-line-unchanged>    <span class=hljs-keyword>end</span>
+</span><span id=code-affordance-33 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span><span id=code-affordance-34 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><p>Let&#39;s try making a request:</p><pre><code class="hljs sh[req_affordance&lt;-req_link_to]"><span id=code-req_affordance-0 class=hljs-diff-line-unchanged>$ curl http://localhost:<span class=hljs-number>4000</span>/users/u1
+</span>
+<span id=code-req_affordance-1 class=hljs-diff-line-unchanged>{
+</span><span id=code-req_affordance-2 class=hljs-diff-line-unchanged>  <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u1"</span>,
+</span><span id=code-req_affordance-3 class=hljs-diff-line-unchanged>  <span class=hljs-string>"name"</span>: <span class=hljs-string>"Joe"</span>,
+</span><span id=code-req_affordance-4 class=hljs-diff-line-unchanged>  <span class=hljs-string>"avatar"</span>: {
+</span><span id=code-req_affordance-5 class=hljs-diff-line-unchanged>    <span class=hljs-string>"src"</span>: <span class=hljs-string>"https://avatars1.githubusercontent.com/u/99915?v=3&amp;s=460"</span>
+</span><span id=code-req_affordance-6 class=hljs-diff-line-unchanged>  },
+</span><span id=code-req_affordance-7 class=hljs-diff-line-unchanged>  <span class=hljs-string>"friends"</span>: [
+</span><span id=code-req_affordance-8 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-9 class=hljs-diff-line-removed>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u2"</span>
+</span><span id=code-req_affordance-10 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u2"</span>,
+</span><span id=code-req_affordance-11 class=hljs-diff-line-added>      <span class=hljs-string>"name"</span>: <span class=hljs-string>"Robert"</span>
+</span><span id=code-req_affordance-12 class=hljs-diff-line-unchanged>    },
+</span><span id=code-req_affordance-13 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-14 class=hljs-diff-line-removed>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u3"</span>
+</span><span id=code-req_affordance-15 class=hljs-diff-line-added>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/users/u3"</span>,
+</span><span id=code-req_affordance-16 class=hljs-diff-line-added>      <span class=hljs-string>"name"</span>: <span class=hljs-string>"Mike"</span>
+</span><span id=code-req_affordance-17 class=hljs-diff-line-unchanged>    }
+</span><span id=code-req_affordance-18 class=hljs-diff-line-unchanged>  ],
+</span><span id=code-req_affordance-19 class=hljs-diff-line-unchanged>  <span class=hljs-string>"likes"</span>: [
+</span><span id=code-req_affordance-20 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-21 class=hljs-diff-line-unchanged>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/m1"</span>
+</span><span id=code-req_affordance-22 class=hljs-diff-line-unchanged>    },
+</span><span id=code-req_affordance-23 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-24 class=hljs-diff-line-unchanged>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/m2"</span>
+</span><span id=code-req_affordance-25 class=hljs-diff-line-unchanged>    },
+</span><span id=code-req_affordance-26 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-27 class=hljs-diff-line-unchanged>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/b1"</span>
+</span><span id=code-req_affordance-28 class=hljs-diff-line-unchanged>    },
+</span><span id=code-req_affordance-29 class=hljs-diff-line-unchanged>    {
+</span><span id=code-req_affordance-30 class=hljs-diff-line-unchanged>      <span class=hljs-string>"href"</span>: <span class=hljs-string>"http://localhost:4000/likes/b2"</span>
+</span><span id=code-req_affordance-31 class=hljs-diff-line-unchanged>    }
+</span><span id=code-req_affordance-32 class=hljs-diff-line-unchanged>  ]
+</span><span id=code-req_affordance-33 class=hljs-diff-line-unchanged>}</span>
+</code></pre><h2>error<a id=error class=Header-anchor href=#error aria-hidden=true><span class=Header-anchor-icon></span></a></h2><pre><code class="hljs elixir[error&lt;-affordance]"><span id=code-error-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-error-1 class=hljs-diff-line-removed>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-error-2 class=hljs-diff-line-removed>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-error-3 class=hljs-diff-line-removed>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-error-4 class=hljs-diff-line-removed>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-error-5 class=hljs-diff-line-removed>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-error-6 class=hljs-diff-line-removed>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-error-7 class=hljs-diff-line-removed>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-error-8 class=hljs-diff-line-removed>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-error-9 class=hljs-diff-line-removed>    movies ++ books
+</span><span id=code-error-10 class=hljs-diff-line-removed>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-error-11 class=hljs-diff-line-removed>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span>
+<span id=code-error-12 class=hljs-diff-line-removed>  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+</span><span id=code-error-13 class=hljs-diff-line-removed>    action <span class=hljs-keyword>do</span>
+</span><span id=code-error-14 class=hljs-diff-line-added>    error <span class=hljs-keyword>do</span>
+</span><span id=code-error-15 class=hljs-diff-line-unchanged>      %{
+</span><span id=code-error-16 class=hljs-diff-line-removed>        <span class=hljs-string>"name"</span> =&gt; user.name,
+</span><span id=code-error-17 class=hljs-diff-line-removed>        <span class=hljs-string>"avatar"</span> =&gt; %{
+</span><span id=code-error-18 class=hljs-diff-line-removed>          <span class=hljs-string>"src"</span> =&gt; user.image
+</span><span id=code-error-19 class=hljs-diff-line-removed>        },
+</span><span id=code-error-20 class=hljs-diff-line-removed>        <span class=hljs-string>"friends"</span> =&gt; <span class=hljs-keyword>for</span> friend &lt;- friends <span class=hljs-keyword>do</span>
+</span><span id=code-error-21 class=hljs-diff-line-removed>          link_to(<span class=hljs-constant>MyAPI.Resource.Users.Read,</span> <span class=hljs-symbol>user:</span> friend)
+</span><span id=code-error-22 class=hljs-diff-line-removed>        <span class=hljs-keyword>end</span>,
+</span><span id=code-error-23 class=hljs-diff-line-removed>        <span class=hljs-string>"likes"</span> =&gt; <span class=hljs-keyword>for</span> like &lt;- likes <span class=hljs-keyword>do</span>
+</span><span id=code-error-24 class=hljs-diff-line-removed>          link_to(<span class=hljs-constant>MyAPI.Resource.Like.Read,</span> <span class=hljs-symbol>item:</span> like)
+</span><span id=code-error-25 class=hljs-diff-line-removed>        <span class=hljs-keyword>end</span>,
+</span><span id=code-error-26 class=hljs-diff-line-removed>        <span class=hljs-string>"update"</span> =&gt; link_to(<span class=hljs-constant>MyAPI.Resource.Like.Update,</span> <span class=hljs-symbol>user:</span> user.id),
+</span><span id=code-error-27 class=hljs-diff-line-added>        <span class=hljs-string>"error"</span> =&gt; %{
+</span><span id=code-error-28 class=hljs-diff-line-added>          <span class=hljs-string>"message"</span> =&gt; <span class=hljs-string>"Oops, looks like you can't see this user!"</span>
+</span><span id=code-error-29 class=hljs-diff-line-added>        }
+</span><span id=code-error-30 class=hljs-diff-line-unchanged>      }
+</span><span id=code-error-31 class=hljs-diff-line-unchanged>    <span class=hljs-keyword>end</span>
+</span>
+<span id=code-error-32 class=hljs-diff-line-removed>    affordance <span class=hljs-keyword>do</span>
+</span><span id=code-error-33 class=hljs-diff-line-removed>      %{
+</span><span id=code-error-34 class=hljs-diff-line-removed>        <span class=hljs-string>"name"</span> =&gt; user.name
+</span><span id=code-error-35 class=hljs-diff-line-removed>      }
+</span><span id=code-error-36 class=hljs-diff-line-removed>    <span class=hljs-keyword>end</span>
+</span><span id=code-error-37 class=hljs-diff-line-removed>  <span class=hljs-keyword>end</span>
+</span><span id=code-error-38 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><h2>transition_to<a id=transition_to class=Header-anchor href=#transition_to aria-hidden=true><span class=Header-anchor-icon></span></a></h2><pre><code>
+
+</code></pre><h2>event<a id=event class=Header-anchor href=#event aria-hidden=true><span class=Header-anchor-icon></span></a></h2><pre><code class="hljs elixir[event&lt;-link_to]"><span id=code-event-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-event-1 class=hljs-diff-line-removed>  <span class=hljs-keyword>use</span> <span class=hljs-constant>Mazurka.Resource</span>
+</span>
+<span id=code-event-2 class=hljs-diff-line-removed>  param user <span class=hljs-keyword>do</span>
+</span><span id=code-event-3 class=hljs-diff-line-removed>    <span class=hljs-constant>Users.</span>read(value)
+</span><span id=code-event-4 class=hljs-diff-line-added>  event <span class=hljs-keyword>do</span>
+</span><span id=code-event-5 class=hljs-diff-line-added>    ^<span class=hljs-constant>IO.</span>puts(<span class=hljs-string>"User get <span class=hljs-subst>#{user_id}</span>"</span>)
+</span><span id=code-event-6 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-event-7 class=hljs-diff-line-removed>  let friends = <span class=hljs-constant>Users.</span>find_friends(user.id)
+</span><span id=code-event-8 class=hljs-diff-line-removed>  let likes <span class=hljs-keyword>do</span>
+</span><span id=code-event-9 class=hljs-diff-line-removed>    movies = <span class=hljs-constant>Movies.</span>find_liked_by_user(user.id)
+</span><span id=code-event-10 class=hljs-diff-line-removed>    books = <span class=hljs-constant>Books.</span>find_liked_by_user(user.id)
+</span><span id=code-event-11 class=hljs-diff-line-removed>    movies ++ books
+</span><span id=code-event-12 class=hljs-diff-line-removed>  <span class=hljs-keyword>end</span>
+</span>
+<span id=code-event-13 class=hljs-diff-line-removed>  condition <span class=hljs-constant>Auth.</span>user_id, permission_error
+</span>
+<span id=code-event-14 class=hljs-diff-line-removed>  mediatype <span class=hljs-constant>Mazurka.Mediatype.Hyperjson </span><span class=hljs-keyword>do</span>
+</span><span id=code-event-15 class=hljs-diff-line-removed>    action <span class=hljs-keyword>do</span>
+</span><span id=code-event-16 class=hljs-diff-line-removed>      %{
+</span><span id=code-event-17 class=hljs-diff-line-removed>        <span class=hljs-string>"name"</span> =&gt; user.name,
+</span><span id=code-event-18 class=hljs-diff-line-removed>        <span class=hljs-string>"avatar"</span> =&gt; %{
+</span><span id=code-event-19 class=hljs-diff-line-removed>          <span class=hljs-string>"src"</span> =&gt; user.image
+</span><span id=code-event-20 class=hljs-diff-line-removed>        },
+</span><span id=code-event-21 class=hljs-diff-line-removed>        <span class=hljs-string>"friends"</span> =&gt; <span class=hljs-keyword>for</span> friend &lt;- friends <span class=hljs-keyword>do</span>
+</span><span id=code-event-22 class=hljs-diff-line-removed>          link_to(<span class=hljs-constant>MyAPI.Resource.Users.Read,</span> <span class=hljs-symbol>user:</span> friend)
+</span><span id=code-event-23 class=hljs-diff-line-removed>        <span class=hljs-keyword>end</span>,
+</span><span id=code-event-24 class=hljs-diff-line-removed>        <span class=hljs-string>"likes"</span> =&gt; <span class=hljs-keyword>for</span> like &lt;- likes <span class=hljs-keyword>do</span>
+</span><span id=code-event-25 class=hljs-diff-line-removed>          link_to(<span class=hljs-constant>MyAPI.Resource.Like.Read,</span> <span class=hljs-symbol>item:</span> like)
+</span><span id=code-event-26 class=hljs-diff-line-removed>        <span class=hljs-keyword>end</span>,
+</span><span id=code-event-27 class=hljs-diff-line-removed>      }
+</span><span id=code-event-28 class=hljs-diff-line-removed>    <span class=hljs-keyword>end</span>
+</span><span id=code-event-29 class=hljs-diff-line-removed>  <span class=hljs-keyword>end</span>
+</span><span id=code-event-30 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre><h2>test<a id=test class=Header-anchor href=#test aria-hidden=true><span class=Header-anchor-icon></span></a></h2><pre><code class="hljs elixir[test&lt;-event]"><span id=code-test-0 class=hljs-diff-line-unchanged><span class=hljs-class><span class=hljs-keyword>defmodule</span> <span class=hljs-title>MyAPI</span></span>.<span class=hljs-constant>Resource.Users.Read </span><span class=hljs-keyword>do</span>
+</span><span id=code-test-1 class=hljs-diff-line-removed>  event <span class=hljs-keyword>do</span>
+</span><span id=code-test-2 class=hljs-diff-line-removed>    ^<span class=hljs-constant>IO.</span>puts(<span class=hljs-string>"User get <span class=hljs-subst>#{user_id}</span>"</span>)
+</span><span id=code-test-3 class=hljs-diff-line-added>  test <span class=hljs-string>"should respond with a user"</span> <span class=hljs-keyword>do</span>
+</span><span id=code-test-4 class=hljs-diff-line-added>    conn = request <span class=hljs-keyword>do</span>
+</span><span id=code-test-5 class=hljs-diff-line-added>      bearer <span class=hljs-number>123</span>
+</span><span id=code-test-6 class=hljs-diff-line-added>    <span class=hljs-keyword>end</span>
+</span>
+<span id=code-test-7 class=hljs-diff-line-added>    assert conn.status == <span class=hljs-number>200</span>
+</span><span id=code-test-8 class=hljs-diff-line-unchanged>  <span class=hljs-keyword>end</span>
+</span><span id=code-test-9 class=hljs-diff-line-unchanged><span class=hljs-keyword>end</span></span>
+</code></pre></div></div><footer></footer><script src=/main.min.js></script>
