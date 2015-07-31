@@ -1,5 +1,5 @@
 ---
-extends: ../../../../layouts/guide/index.jade
+extends: ../../../layouts/guide/index.jade
 block: content
 locals:
   title: Introduction - Design
