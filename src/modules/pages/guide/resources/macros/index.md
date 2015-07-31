@@ -107,7 +107,7 @@ end
 
 If we don't want the default error message, we can pass an [error handler](#error) function to override the response
 
-```elixir[condition<-let]
+```elixir[condition<-condition_no_error]
 defmodule MyAPI.Resource.Users.Read do
   use Mazurka.Resource
 
