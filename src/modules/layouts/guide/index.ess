@@ -1,6 +1,14 @@
 .Guide
-  %theme-min/skins/page.ess
+  %theme-min/skins/page/index.ess
+
   &-sidenav
-    %theme-min/skins/sidenav.ess
+    %theme-min/skins/sidenav/index.ess
+
+    &-link
+      %theme-min/skins/sidenav/link.ess
+
+    &-sublink
+      %theme-min/skins/sidenav/sublink.ess
+
   &-content
-    %theme-min/skins/content.ess
+    %theme-min/skins/content/index.ess

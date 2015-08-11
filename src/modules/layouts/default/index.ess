@@ -1,2 +1,2 @@
 .Toolbar
-  %theme-min/skins/toolbar.ess(logo='./mazurka-large.png')
+  %theme-min/skins/toolbar/index.ess(logo='./mazurka-large.png')

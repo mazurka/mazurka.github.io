@@ -1,6 +1,7 @@
 body
   color = __.color.black.light
   font-size = __.h5
+  font-family Helvetica, Arial
 
 hr
   border none
