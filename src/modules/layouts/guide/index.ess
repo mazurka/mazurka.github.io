@@ -1,7 +1,6 @@
 .Guide
-  %skins/page.ess
-
+  %theme-min/skins/page.ess
   &-sidenav
-    %skins/sidenav.ess
+    %theme-min/skins/sidenav.ess
   &-content
-    %skins/content.ess
+    %theme-min/skins/content.ess
