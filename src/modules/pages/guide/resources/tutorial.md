@@ -65,7 +65,7 @@ end
 
 ## action
 
-Every [mediatype](#mediatype) block needs an action handler. This is called after all of the conditions are met. Inside, we define what happens when this resource is requested by a client. All side-effects should be contained in this block. The response from the action will be serialized and sent to the client.
+Every [mediatype](#mediatype) block needs an action handler. Inside, we define what happens when this resource is requested by a client. All side-effects should be contained in this block. The response from the action will be serialized and sent to the client.
 
 Here we're just going to send a read-only response to the client. This will include the user's `name` and `avatar`.
 
@@ -510,7 +510,7 @@ true
 
 ## transition_to
 
-The response of `true` probably isn't the best when a request goes through. We want there to be a continuous flow for our clients since there are hypermedia driven. Imagine updating your user in the browser and getting the response `true`. You'd have to hit the back button to get back to where you wanted to go. We can improve this experience by using the `transition_to` call.
+The response of `true` probably isn't the best when a request goes through. We want there to be a continuous flow for our clients since they are hypermedia driven. Imagine updating your user in the browser and getting the response `true`. You'd have to hit the back button to get back to where you wanted to go. We can improve this experience by using the `transition_to` call.
 
 ```elixir[user_update_transition_to<-user_update]
 defmodule MyAPI.Resource.Users.Update do
